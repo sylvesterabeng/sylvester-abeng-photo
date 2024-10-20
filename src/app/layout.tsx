@@ -1,7 +1,7 @@
 import { css } from '@kuma-ui/core'
 import { KumaRegistry } from '@kuma-ui/next-plugin/registry'
 import { PrismicPreview } from '@prismicio/next'
-import { Bellefair } from 'next/font/google'
+import { Bellefair, Zen_Old_Mincho } from 'next/font/google'
 
 import { repositoryName } from '@/prismicio'
 
@@ -13,7 +13,17 @@ export const metadata: Metadata = {
   title: 'Sylvester Abeng',
 }
 
-const bellefair = Bellefair({ weight: ['400'], subsets: ['latin'] })
+const bellefair = Bellefair({
+  variable: '--font-bellefair',
+  weight: ['400'],
+  subsets: ['latin'],
+})
+
+const zenOldMincho = Zen_Old_Mincho({
+  variable: '--font-zen-old-mincho',
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+})
 
 const container = css`
   color: t('colors.neutral.500');
@@ -26,6 +36,8 @@ const container = css`
   ::selection {
     background: t('colors.neutral.200');
   }
+
+  font-family: var(--font-bellefair);
 `
 
 export default function RootLayout({
@@ -34,8 +46,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ja" className={container}>
-      <body className={bellefair.className}>
+    <html
+      lang="ja"
+      className={`${bellefair.variable} ${zenOldMincho.variable} ${container}`}
+    >
+      <body>
         <KumaRegistry>{children}</KumaRegistry>
         <PrismicPreview repositoryName={repositoryName} />
       </body>

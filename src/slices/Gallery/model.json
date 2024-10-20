@@ -12,12 +12,21 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "thumbnail": {
-          "type": "Image",
+        "thumbnails": {
+          "type": "Group",
           "config": {
-            "label": "thumbnail",
-            "constraint": {},
-            "thumbnails": []
+            "label": "thumbnails",
+            "repeat": true,
+            "fields": {
+              "thumbnail": {
+                "type": "Image",
+                "config": {
+                  "label": "thumbnail",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
           }
         },
         "photos": {
@@ -42,6 +51,13 @@
           "config": {
             "label": "title",
             "placeholder": ""
+          }
+        },
+        "number": {
+          "type": "Text",
+          "config": {
+            "label": "number",
+            "placeholder": "#00"
           }
         }
       },

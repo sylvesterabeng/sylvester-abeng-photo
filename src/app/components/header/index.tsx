@@ -1,4 +1,4 @@
-import { HStack, css } from '@kuma-ui/core'
+import { HStack, VStack, css } from '@kuma-ui/core'
 
 const container = css`
   top: 0;
@@ -8,14 +8,34 @@ const container = css`
   position: fixed;
   align-items: center;
   height: t('sizes.header');
-  font-size: t('fontSizes.lg');
+`
+
+const title = css`
+  font-size: t('fontSizes.xl');
+`
+
+const subtitle = css`
+  font-family: var(--font-zen-old-mincho);
+  font-weight: 700;
+  font-size: t('fontSizes.sm');
+`
+
+const nav = css`
+  font-size: t('fontSizes.md');
+  gap: 24px;
 `
 
 const Header: React.FC = () => {
   return (
     <HStack justify="space-between" className={container}>
-      <div>Sy</div>
-      <div>Menu</div>
+      <VStack>
+        <span className={title}>Sylvester Abeng</span>
+        <span className={subtitle}>「好き」と「楽しい」を集める</span>
+      </VStack>
+      <HStack className={nav}>
+        <span>About</span>
+        <span>Album</span>
+      </HStack>
     </HStack>
   )
 }

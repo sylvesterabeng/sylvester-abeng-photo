@@ -7,11 +7,11 @@ type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 type GalleriesDocumentDataSlicesSlice = GallerySlice
 
 /**
- * Content for galleries2 documents
+ * Content for galleries documents
  */
 interface GalleriesDocumentData {
   /**
-   * Slice Zone field in *galleries2*
+   * Slice Zone field in *galleries*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -20,7 +20,7 @@ interface GalleriesDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<GalleriesDocumentDataSlicesSlice> /**
-   * Meta Title field in *galleries2*
+   * Meta Title field in *galleries*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -31,7 +31,7 @@ interface GalleriesDocumentData {
   meta_title: prismic.KeyTextField
 
   /**
-   * Meta Description field in *galleries2*
+   * Meta Description field in *galleries*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -42,7 +42,7 @@ interface GalleriesDocumentData {
   meta_description: prismic.KeyTextField
 
   /**
-   * Meta Image field in *galleries2*
+   * Meta Image field in *galleries*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -54,87 +54,37 @@ interface GalleriesDocumentData {
 }
 
 /**
- * galleries2 document from Prismic
+ * galleries document from Prismic
  *
  * - **API ID**: `galleries`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type GalleriesDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<GalleriesDocumentData>,
-    'galleries',
-    Lang
-  >
-
-type SingleDocumentDataSlicesSlice = GallerySlice
-
-/**
- * Content for single documents
- */
-interface SingleDocumentData {
-  /**
-   * Slice Zone field in *single*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: single.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<SingleDocumentDataSlicesSlice> /**
-   * Meta Title field in *single*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: single.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField
-
-  /**
-   * Meta Description field in *single*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: single.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_description: prismic.KeyTextField
-
-  /**
-   * Meta Image field in *single*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: single.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>
-}
-
-/**
- * single document from Prismic
- *
- * - **API ID**: `single`
  * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type SingleDocument<Lang extends string = string> =
+export type GalleriesDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
-    Simplify<SingleDocumentData>,
-    'single',
+    Simplify<GalleriesDocumentData>,
+    'galleries',
     Lang
   >
 
-export type AllDocumentTypes = GalleriesDocument | SingleDocument
+export type AllDocumentTypes = GalleriesDocument
+
+/**
+ * Item in *Gallery → Default → Primary → thumbnails*
+ */
+export interface GallerySliceDefaultPrimaryThumbnailsItem {
+  /**
+   * thumbnail field in *Gallery → Default → Primary → thumbnails*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.default.primary.thumbnails[].thumbnail
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  thumbnail: prismic.ImageField<never>
+}
 
 /**
  * Item in *Gallery → Default → Primary → photos*
@@ -156,14 +106,16 @@ export interface GallerySliceDefaultPrimaryPhotosItem {
  */
 export interface GallerySliceDefaultPrimary {
   /**
-   * thumbnail field in *Gallery → Default → Primary*
+   * thumbnails field in *Gallery → Default → Primary*
    *
-   * - **Field Type**: Image
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.default.primary.thumbnail
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **API ID Path**: gallery.default.primary.thumbnails[]
+   * - **Documentation**: https://prismic.io/docs/field#group
    */
-  thumbnail: prismic.ImageField<never>
+  thumbnails: prismic.GroupField<
+    Simplify<GallerySliceDefaultPrimaryThumbnailsItem>
+  >
 
   /**
    * photos field in *Gallery → Default → Primary*
@@ -184,6 +136,16 @@ export interface GallerySliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField
+
+  /**
+   * number field in *Gallery → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: #00
+   * - **API ID Path**: gallery.default.primary.number
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  number: prismic.KeyTextField
 }
 
 /**
@@ -237,11 +199,9 @@ declare module '@prismicio/client' {
       GalleriesDocument,
       GalleriesDocumentData,
       GalleriesDocumentDataSlicesSlice,
-      SingleDocument,
-      SingleDocumentData,
-      SingleDocumentDataSlicesSlice,
       AllDocumentTypes,
       GallerySlice,
+      GallerySliceDefaultPrimaryThumbnailsItem,
       GallerySliceDefaultPrimaryPhotosItem,
       GallerySliceDefaultPrimary,
       GallerySliceVariation,

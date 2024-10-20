@@ -1,0 +1,34 @@
+import { Box, css, VStack } from '@kuma-ui/core'
+import { PrismicNextImage } from '@prismicio/next'
+
+import { createClient } from '@/prismicio'
+
+const Albums: React.FC = async () => {
+  const client = createClient()
+  const res = await client.getSingle('galleries')
+
+  const album = css`
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  `
+
+  return (
+    <VStack p={64} alignItems="center" gap={16}>
+      {res.data.slices.map((d) => (
+        <VStack key={d.id} className={album} alignItems="center">
+          <p>{d.primary.title}</p>
+          <Box width="100%">
+            <PrismicNextImage field={d.primary.thumbnails[0]?.thumbnail} />
+          </Box>
+        </VStack>
+      ))}
+    </VStack>
+  )
+}
+
+export default Albums

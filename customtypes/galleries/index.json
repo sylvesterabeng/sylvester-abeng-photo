@@ -1,7 +1,7 @@
 {
   "format": "page",
-  "id": "single",
-  "label": "pages",
+  "id": "galleries",
+  "label": "galleries",
   "repeatable": false,
   "status": true,
   "json": {
