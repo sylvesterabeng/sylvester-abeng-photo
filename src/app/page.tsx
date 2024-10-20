@@ -1,12 +1,11 @@
-import 'sanitize.css'
-import { Gallery, Header, Hero } from './components'
+import { Galleries, Header, Hero } from './components'
 
 const App: React.FC = () => {
   return (
     <>
       <Header />
       <Hero />
-      <Gallery />
+      <Galleries />
     </>
   )
 }

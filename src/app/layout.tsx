@@ -1,8 +1,13 @@
 import { css } from '@kuma-ui/core'
 import { KumaRegistry } from '@kuma-ui/next-plugin/registry'
+import { PrismicPreview } from '@prismicio/next'
 import { Bellefair } from 'next/font/google'
 
+import { repositoryName } from '@/prismicio'
+
 import type { Metadata } from 'next'
+
+import 'sanitize.css'
 
 export const metadata: Metadata = {
   title: 'Sylvester Abeng',
@@ -32,6 +37,7 @@ export default function RootLayout({
     <html lang="ja" className={container}>
       <body className={bellefair.className}>
         <KumaRegistry>{children}</KumaRegistry>
+        <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>
   )
