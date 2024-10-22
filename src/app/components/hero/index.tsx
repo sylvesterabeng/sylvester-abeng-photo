@@ -21,16 +21,25 @@ const container = css`
 const imageWrapper = css`
   @keyframes slide {
     0% {
-      object-position: -150px;
+      object-position: 30%;
       opacity: 0;
     }
     10% {
-      object-position: -220px;
+      object-position: 55%;
       opacity: 1;
     }
     100% {
-      object-position: -350px;
+      object-position: 70%;
       opacity: 0.9;
+    }
+  }
+
+  @keyframes progress {
+    from {
+      width: 0;
+    }
+    to {
+      width: 300px;
     }
   }
 
@@ -82,6 +91,25 @@ const meta = css`
   padding-left: 60px;
 `
 
+const progress = css`
+  background: t('colors.neutral.200');
+  height: 3px;
+  margin-top: 8px;
+  width: 300px;
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    background: t('colors.neutral.300');
+    height: 3px;
+    width: 300px;
+    animation: progress 6s infinite ease-in-out;
+  }
+`
+
 const Hero: React.FC<Props> = ({ pickups }) => {
   const maxTimer = 5
   const [timer, setTimer] = useState(0)
@@ -119,10 +147,11 @@ const Hero: React.FC<Props> = ({ pickups }) => {
           <span>「楽しい」</span>
           <span className={number}>{data.number}</span>
         </VStack>
-        <VStack>
-          <span className={meta}>
+        <VStack className={meta}>
+          <span>
             {data.number} - {data.title}
           </span>
+          <Box className={progress}></Box>
         </VStack>
       </VStack>
     </HStack>
