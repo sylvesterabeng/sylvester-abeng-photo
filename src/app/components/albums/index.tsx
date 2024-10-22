@@ -5,7 +5,7 @@ import { createClient } from '@/prismicio'
 
 const Albums: React.FC = async () => {
   const client = createClient()
-  const res = await client.getSingle('galleries')
+  const res = await client.getByUID('albums', 'pickups')
 
   const album = css`
     width: 100%;

@@ -4,49 +4,49 @@ import type * as prismic from '@prismicio/client'
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 
-type GalleriesDocumentDataSlicesSlice = GallerySlice
+type AlbumsDocumentDataSlicesSlice = GallerySlice
 
 /**
- * Content for galleries documents
+ * Content for albums documents
  */
-interface GalleriesDocumentData {
+interface AlbumsDocumentData {
   /**
-   * Slice Zone field in *galleries*
+   * Slice Zone field in *albums*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: galleries.slices[]
+   * - **API ID Path**: albums.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<GalleriesDocumentDataSlicesSlice> /**
-   * Meta Title field in *galleries*
+  slices: prismic.SliceZone<AlbumsDocumentDataSlicesSlice> /**
+   * Meta Title field in *albums*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: galleries.meta_title
+   * - **API ID Path**: albums.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   meta_title: prismic.KeyTextField
 
   /**
-   * Meta Description field in *galleries*
+   * Meta Description field in *albums*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: galleries.meta_description
+   * - **API ID Path**: albums.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   meta_description: prismic.KeyTextField
 
   /**
-   * Meta Image field in *galleries*
+   * Meta Image field in *albums*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: galleries.meta_image
+   * - **API ID Path**: albums.meta_image
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#image
    */
@@ -54,22 +54,18 @@ interface GalleriesDocumentData {
 }
 
 /**
- * galleries document from Prismic
+ * albums document from Prismic
  *
- * - **API ID**: `galleries`
- * - **Repeatable**: `false`
+ * - **API ID**: `albums`
+ * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type GalleriesDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<GalleriesDocumentData>,
-    'galleries',
-    Lang
-  >
+export type AlbumsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<AlbumsDocumentData>, 'albums', Lang>
 
-export type AllDocumentTypes = GalleriesDocument
+export type AllDocumentTypes = AlbumsDocument
 
 /**
  * Item in *Gallery → Default → Primary → thumbnails*
@@ -196,9 +192,9 @@ declare module '@prismicio/client' {
 
   namespace Content {
     export type {
-      GalleriesDocument,
-      GalleriesDocumentData,
-      GalleriesDocumentDataSlicesSlice,
+      AlbumsDocument,
+      AlbumsDocumentData,
+      AlbumsDocumentDataSlicesSlice,
       AllDocumentTypes,
       GallerySlice,
       GallerySliceDefaultPrimaryThumbnailsItem,

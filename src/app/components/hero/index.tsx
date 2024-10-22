@@ -1,7 +1,14 @@
+'use client'
 import { Box, css, Flex, HStack, VStack } from '@kuma-ui/core'
 import { PrismicNextImage } from '@prismicio/next'
+import { useEffect, useState } from 'react'
 
-import { createClient } from '@/prismicio'
+import type { GallerySlice } from '../../../../prismicio-types'
+import type { SliceZone } from '@prismicio/client'
+
+interface Props {
+  pickups: SliceZone<GallerySlice>
+}
 
 const container = css`
   height: 100vh;
@@ -12,7 +19,20 @@ const container = css`
 `
 
 const imageWrapper = css`
-  flex: 1;
+  @keyframes slide {
+    0% {
+      object-position: -150px;
+      opacity: 0;
+    }
+    10% {
+      object-position: -220px;
+      opacity: 1;
+    }
+    100% {
+      object-position: -350px;
+      opacity: 0.9;
+    }
+  }
 
   img {
     min-width: 300px;
@@ -20,16 +40,17 @@ const imageWrapper = css`
     height: 100%;
     object-fit: cover;
     user-select: none;
-  }
+    animation: slide 7s infinite cubic-bezier(0.3, 0, 0.7, 1);
 
-  &:only-child {
-    border-radius: t('radii.rg');
-  }
-  &:first-child:not(:only-child) img {
-    border-radius: t('radii.rg') 0 0 t('radii.rg');
-  }
-  &:last-child:not(:only-child) img {
-    border-radius: 0 t('radii.rg') t('radii.rg') 0;
+    &:only-child {
+      border-radius: t('radii.rg');
+    }
+    &:first-child:not(:only-child) {
+      border-radius: t('radii.rg') 0 0 t('radii.rg');
+    }
+    &:last-child:not(:only-child) {
+      border-radius: 0 t('radii.rg') t('radii.rg') 0;
+    }
   }
 `
 
@@ -61,15 +82,32 @@ const meta = css`
   padding-left: 60px;
 `
 
-const Hero: React.FC = async () => {
-  const client = createClient()
-  const res = await client.getSingle('galleries')
-  const data = res.data.slices[1]
+const Hero: React.FC<Props> = ({ pickups }) => {
+  const maxTimer = 5
+  const [timer, setTimer] = useState(0)
+  const [index, setIndex] = useState(0)
+  const data = pickups[index].primary
+
+  useEffect(() => {
+    const setNextPickup = () => {
+      setIndex(index === pickups.length - 1 ? 0 : index + 1)
+    }
+
+    if (timer > maxTimer) {
+      setTimer(0)
+      setNextPickup()
+    }
+    const intervalId = setInterval(() => {
+      setTimer(timer + 1)
+    }, 1000)
+
+    return () => clearInterval(intervalId)
+  }, [index, pickups, timer])
 
   return (
     <HStack className={container}>
       <Flex mr={40} gap={8} className={image}>
-        {data?.primary.thumbnails?.map((items) => (
+        {data.thumbnails?.map((items) => (
           <Box key={items.thumbnail.id} className={imageWrapper}>
             <PrismicNextImage field={items.thumbnail} />
           </Box>
@@ -79,11 +117,11 @@ const Hero: React.FC = async () => {
         <VStack mb={64} className={catchphrase}>
           <span>「好き」</span>
           <span>「楽しい」</span>
-          <span className={number}>{data?.primary.number}</span>
+          <span className={number}>{data.number}</span>
         </VStack>
         <VStack>
           <span className={meta}>
-            {data?.primary.number} - {data?.primary.title}
+            {data.number} - {data.title}
           </span>
         </VStack>
       </VStack>
