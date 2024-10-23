@@ -17,21 +17,24 @@ const theme = createTheme({
     brand: '#B80F0A',
   },
   fontSizes: {
+    xs: '10px',
     sm: '12px',
     rg: '14px',
     md: '16px',
-    lg: '20px',
+    lg: '24px',
     xl: '32px',
     xxl: '40px',
     xxxl: '64px',
-    heroLg: '80px',
+    heroLg: '100px',
   },
   radii: {
     sm: '4px',
     rg: '8px',
+    md: '16px',
   },
   sizes: {
-    header: '160px',
+    header: '120px',
+    headerMobile: '100px',
   },
 })
 

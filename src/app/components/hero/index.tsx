@@ -1,6 +1,5 @@
 'use client'
-import { Box, css, Flex, HStack, VStack } from '@kuma-ui/core'
-import { PrismicNextImage } from '@prismicio/next'
+import { Box, css, Flex, VStack } from '@kuma-ui/core'
 import { useEffect, useState } from 'react'
 
 import type { GallerySlice } from '../../../../prismicio-types'
@@ -13,100 +12,239 @@ interface Props {
 const container = css`
   height: 100vh;
   width: 100%;
+  max-width: 100%;
   padding: 40px 64px;
   padding-top: t('sizes.header');
   align-items: center;
+  flex-direction: row;
+  overflow: hidden;
+
+  @media (width < t('breakpoints.lg')) {
+    flex-direction: column;
+    padding: 24px;
+    padding-top: t('sizes.headerMobile');
+  }
 `
 
 const imageWrapper = css`
-  @keyframes slide {
-    0% {
-      object-position: 30%;
-      opacity: 0;
-    }
-    10% {
-      object-position: 55%;
-      opacity: 1;
-    }
-    100% {
-      object-position: 70%;
-      opacity: 0.9;
-    }
-  }
+  flex: 1;
 
-  @keyframes progress {
-    from {
-      width: 0;
-    }
-    to {
-      width: 300px;
-    }
-  }
-
-  img {
-    min-width: 300px;
+  div {
     width: 100%;
     height: 100%;
     object-fit: cover;
     user-select: none;
-    animation: slide 7s infinite cubic-bezier(0.3, 0, 0.7, 1);
+    background-size: auto 100%;
+    overflow: hidden;
+    background-size: cover;
 
     &:only-child {
-      border-radius: t('radii.rg');
+      border-radius: t('radii.md');
     }
     &:first-child:not(:only-child) {
-      border-radius: t('radii.rg') 0 0 t('radii.rg');
+      border-radius: t('radii.md') 0 0 t('radii.md');
     }
     &:last-child:not(:only-child) {
-      border-radius: 0 t('radii.rg') t('radii.rg') 0;
+      border-radius: 0 t('radii.md') t('radii.md') 0;
+    }
+
+    @media (width < t('breakpoints.lg')) {
+      min-width: unset;
     }
   }
 `
 
-const image = css`
+const singleSlide = css`
+  min-width: 408px;
+  @keyframes singleSlide {
+    0% {
+      transform: translateX(60px);
+      background-position: 50%;
+      opacity: 0;
+    }
+    20% {
+      transform: translateX(0);
+      background-position: 45%;
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(0);
+      background-position: 60%;
+      opacity: 1;
+    }
+  }
+
+  @keyframes singleSlideMobile {
+    0% {
+      transform: translateX(20px);
+      background-position: 40%;
+      opacity: 0;
+    }
+    20% {
+      transform: translateX(0);
+      background-position: 35%;
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(0);
+      background-position: 60%;
+      opacity: 1;
+    }
+  }
+
+  animation: singleSlide 7s cubic-bezier(0.3, 0, 0.7, 1);
+
+  @media (width < t('breakpoints.lg')) {
+    animation: singleSlideMobile 7s cubic-bezier(0.3, 0, 0.7, 1);
+  }
+`
+
+const dualSlide = css`
+  min-width: 200px;
+
+  @keyframes dualSlide {
+    0% {
+      transform: translateX(60px);
+      background-position: 55%;
+      opacity: 0;
+    }
+    20% {
+      transform: translateX(0);
+      background-position: 50%;
+      opacity: 1;
+    }
+    60%,
+    100% {
+      transform: translateX(0);
+      background-position: 60%;
+      opacity: 1;
+    }
+  }
+
+  @keyframes dualSlideMobile {
+    0% {
+      transform: translateX(20px);
+      background-position: 55%;
+      opacity: 0;
+    }
+    20% {
+      transform: translateX(0);
+      background-position: 50%;
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(0);
+      background-position: 60%;
+      opacity: 1;
+    }
+  }
+
+  &:first-child {
+    animation: dualSlide 7s cubic-bezier(0.3, 0, 0.7, 1);
+
+    @media (width < t('breakpoints.lg')) {
+      animation: dualSlide 7s cubic-bezier(0.3, 0, 0.7, 1);
+    }
+  }
+  &:last-child {
+    animation: dualSlideMobile 7s cubic-bezier(0.3, 0, 0.7, 1);
+
+    @media (width < t('breakpoints.lg')) {
+      animation: dualSlideMobile 7s cubic-bezier(0.3, 0, 0.7, 1);
+    }
+  }
+`
+
+const slide = css`
   height: 100%;
   width: 100%;
+  margin-right: 40px;
+  gap: 8px;
+  flex: unset;
+  flex: 4;
+
+  @media (width < t('breakpoints.lg')) {
+    margin-right: 0;
+  }
+`
+
+const textWrapper = css`
+  height: -webkit-fill-available;
+  width: 100%;
+  padding-bottom: 40px;
+  padding-top: 80px;
+  justify-content: space-between;
+  flex: unset;
+  flex: 1;
+
+  @media (width < t('breakpoints.lg')) {
+    padding-bottom: 0;
+    padding-top: 20px;
+    justify-content: unset;
+  }
 `
 
 const catchphrase = css`
   min-width: 500px;
-  line-height: 130%;
+  width: 500px;
+  line-height: 120%;
   font-size: t('fontSizes.heroLg');
-  align-self: flex-end;
   font-family: var(--font-zen-old-mincho);
+  margin-bottom: 64px;
+  font-weight: 900px;
+
+  @media (width < t('breakpoints.lg')) {
+    min-width: 100%;
+    width: 100%;
+    font-size: t('fontSizes.xxl');
+    margin-bottom: 24px;
+  }
 `
 
 const number = css`
-  min-width: 500px;
-  line-height: 130%;
+  @keyframes numberSlide {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   font-size: t('fontSizes.xxxl');
-  align-self: flex-end;
   padding-left: 60px;
+  font-family: var(--font-bellefair);
+  animation: numberSlide 1s cubic-bezier(0.3, 0, 0.7, 1);
+
+  @media (width < t('breakpoints.lg')) {
+    padding-left: 20px;
+    font-size: t('fontSizes.lg');
+  }
 `
 
 const meta = css`
-  min-width: 500px;
+  @keyframes metaSlide {
+    0% {
+      transform: translateY(8px);
+      opacity: 0;
+    }
+    10% {
+      transform: translateY(0px);
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   line-height: 130%;
   font-size: t('fontSizes.md');
   padding-left: 60px;
-`
+  animation: metaSlide 7s cubic-bezier(0.3, 0, 0.7, 1);
 
-const progress = css`
-  background: t('colors.neutral.200');
-  height: 3px;
-  margin-top: 8px;
-  width: 300px;
-  position: relative;
-
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    background: t('colors.neutral.300');
-    height: 3px;
-    width: 300px;
-    animation: progress 6s infinite ease-in-out;
+  @media (width < t('breakpoints.lg')) {
+    padding-left: 20px;
+    font-size: t('fontSizes.sm');
   }
 `
 
@@ -133,28 +271,39 @@ const Hero: React.FC<Props> = ({ pickups }) => {
   }, [index, pickups, timer])
 
   return (
-    <HStack className={container}>
-      <Flex mr={40} gap={8} className={image}>
+    <Flex className={container}>
+      <Flex className={slide}>
         {data.thumbnails?.map((items) => (
           <Box key={items.thumbnail.id} className={imageWrapper}>
-            <PrismicNextImage field={items.thumbnail} />
+            {data.thumbnails.length > 1 ? (
+              <Box
+                backgroundImage={`url('${items.thumbnail.url}')`}
+                className={dualSlide}
+              />
+            ) : (
+              <Box
+                backgroundImage={`url('${items.thumbnail.url}')`}
+                className={singleSlide}
+              />
+            )}
           </Box>
         ))}
       </Flex>
-      <VStack pt={80} pb={40} height="100%" justifyContent="space-between">
-        <VStack mb={64} className={catchphrase}>
+      <VStack className={textWrapper}>
+        <VStack className={catchphrase}>
           <span>「好き」</span>
           <span>「楽しい」</span>
-          <span className={number}>{data.number}</span>
+          <span className={number} key={data.number}>
+            {data.number}
+          </span>
         </VStack>
-        <VStack className={meta}>
+        <VStack className={meta} key={data.number}>
           <span>
             {data.number} - {data.title}
           </span>
-          <Box className={progress}></Box>
         </VStack>
       </VStack>
-    </HStack>
+    </Flex>
   )
 }
 

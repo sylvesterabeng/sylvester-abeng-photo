@@ -21,13 +21,14 @@ const bellefair = Bellefair({
 
 const zenOldMincho = Zen_Old_Mincho({
   variable: '--font-zen-old-mincho',
-  weight: ['400', '500', '700'],
+  weight: ['400', '500', '700', '900'],
   subsets: ['latin'],
 })
 
 const container = css`
   color: t('colors.neutral.500');
   background: t('colors.neutral.100');
+  font-family: var(--font-bellefair);
 
   ::-moz-selection {
     background: t('colors.neutral.200');
@@ -37,7 +38,21 @@ const container = css`
     background: t('colors.neutral.200');
   }
 
-  font-family: var(--font-bellefair);
+  /* scrollbar-width: thin;
+  scrollbar-color: t('colors.neutral.400') t('colors.neutral.100'); */
+
+  body::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: t('colors.neutral.100');
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: t('colors.neutral.200');
+    border-radius: 50px;
+  }
 `
 
 export default function RootLayout({
