@@ -40,8 +40,9 @@ const nav = css`
   font-size: t('fontSizes.md');
   gap: 24px;
 
-  span {
-    cursor: pointer;
+  a {
+    text-decoration: none;
+    outline: none;
   }
 
   @media (width < t('breakpoints.lg')) {
@@ -57,8 +58,8 @@ const Header: React.FC = () => {
         <span className={subtitle}>「好き」と「楽しい」を集める</span>
       </VStack>
       <HStack className={nav}>
-        <span>About</span>
-        <span>Album</span>
+        <a>About</a>
+        <a>Album</a>
       </HStack>
     </HStack>
   )

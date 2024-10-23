@@ -2,6 +2,7 @@ import { css } from '@kuma-ui/core'
 import { KumaRegistry } from '@kuma-ui/next-plugin/registry'
 import { PrismicPreview } from '@prismicio/next'
 import { Bellefair, Zen_Old_Mincho } from 'next/font/google'
+import AnimatedCursor from 'react-animated-cursor'
 
 import { repositoryName } from '@/prismicio'
 
@@ -66,6 +67,20 @@ export default function RootLayout({
       className={`${bellefair.variable} ${zenOldMincho.variable} ${container}`}
     >
       <body>
+        <AnimatedCursor
+          color="80,80,80"
+          innerSize={6}
+          outerSize={24}
+          outerScale={1.75}
+          outerAlpha={0.9}
+          innerStyle={{
+            mixBlendMode: 'difference',
+          }}
+          outerStyle={{
+            mixBlendMode: 'difference',
+          }}
+          trailingSpeed={6}
+        />
         <KumaRegistry>{children}</KumaRegistry>
         <PrismicPreview repositoryName={repositoryName} />
       </body>

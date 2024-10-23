@@ -26,6 +26,9 @@ importers:
       react:
         specifier: ^18
         version: 18.3.1
+      react-animated-cursor:
+        specifier: ^2.11.2
+        version: 2.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-dom:
         specifier: ^18
         version: 18.3.1(react@18.3.1)
@@ -2806,6 +2809,12 @@ packages:
 
   rc9@2.1.2:
     resolution: {integrity: sha512-btXCnMmRIBINM2LDZoEmOogIZU7Qe7zn4BpomSKZ/ykbLObuBdvG+mFq11DL6fjH1DRwHhrlgtYWG96bJiC7Cg==}
+
+  react-animated-cursor@2.11.2:
+    resolution: {integrity: sha512-LV0PtST61tdeW/chCqFt1JLp6i0d5fD9v2uradBcPAkKKCi2Iw7sAcD11ADS1TjXPPj9MOoD9YubEt++/IbZ+g==}
+    peerDependencies:
+      react: ^18.2.0
+      react-dom: ^18.2.0
 
   react-dom@18.3.1:
     resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
@@ -6483,6 +6492,11 @@ snapshots:
     dependencies:
       defu: 6.1.4
       destr: 2.0.3
+
+  react-animated-cursor@2.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   react-dom@18.3.1(react@18.3.1):
     dependencies:
