@@ -8,6 +8,8 @@ const container = css`
   position: fixed;
   align-items: center;
   height: t('sizes.header');
+  z-index: 1;
+  background-color: t('colors.neutral.100');
 
   @media (width < t('breakpoints.lg')) {
     padding: 0 24px;
