@@ -24,8 +24,8 @@ const theme = createTheme({
     lg: '24px',
     xl: '32px',
     xxl: '40px',
-    xxxl: '64px',
-    heroLg: '100px',
+    xxxl: '80px',
+    heroLg: '140px',
   },
   radii: {
     sm: '4px',

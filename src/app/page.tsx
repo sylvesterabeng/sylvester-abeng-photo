@@ -1,6 +1,6 @@
-import { createClient } from '@/prismicio'
+import { Hero } from './components'
 
-import { Header, Hero } from './components'
+import { createClient } from '@/prismicio'
 
 const App: React.FC = async () => {
   const client = createClient()
@@ -9,7 +9,6 @@ const App: React.FC = async () => {
 
   return (
     <>
-      <Header />
       <Hero pickups={pickups} />
       {/* <Albums /> */}
     </>

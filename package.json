@@ -31,7 +31,6 @@
     "@typescript-eslint/parser": "^8.10.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.15",
-    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-unused-imports": "^4.1.4",
     "prettier": "^3.3.3",
     "slice-machine-ui": "^2.2.0",

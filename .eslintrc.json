@@ -1,12 +1,33 @@
 {
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "."
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "react-hooks",
+    "import",
+    "unused-imports"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "next/core-web-vitals",
-    "prettier"
+    "plugin:react-hooks/recommended"
   ],
-  "plugins": ["unused-imports"],
   "rules": {
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "curly": "error",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/prefer-interface": "off",
+    "react/jsx-no-target-blank": "error",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "import/order": [
       "warn",
       {
@@ -14,31 +35,16 @@
           "builtin",
           "external",
           "internal",
-          "parent",
-          "sibling",
-          "index",
+          ["parent", "sibling"],
           "object",
           "type"
         ],
         "newlines-between": "always",
-        "alphabetize": { "order": "asc" }
-      }
-    ],
-    "import/no-duplicates": "error",
-    "@typescript-eslint/consistent-type-imports": "warn",
-    "@typescript-eslint/ban-ts-comment": "off",
-    "react/display-name": "off",
-    "@next/next/no-img-element": "off",
-    "react/jsx-curly-brace-presence": "error",
-    "no-restricted-imports": [
-      "error",
-      {
-        "paths": [
-          {
-            "name": "react",
-            "importNames": ["default"]
-          }
-        ]
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
       }
     ]
   }
