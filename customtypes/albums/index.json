@@ -12,6 +12,38 @@
           "label": "UID"
         }
       },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "title",
+          "placeholder": ""
+        }
+      },
+      "thumbnail": {
+        "type": "Image",
+        "config": {
+          "label": "thumbnail",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "photos": {
+        "type": "Group",
+        "config": {
+          "label": "photos",
+          "repeat": true,
+          "fields": {
+            "photo": {
+              "type": "Image",
+              "config": {
+                "label": "photo",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

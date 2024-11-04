@@ -38,4 +38,8 @@ export const container = css`
     background-color: t('colors.neutral.200');
     border-radius: 50px;
   }
+
+  body {
+    overscroll-behavior-y: none;
+  }
 `

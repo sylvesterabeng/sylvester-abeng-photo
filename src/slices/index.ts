@@ -3,5 +3,5 @@
 import dynamic from 'next/dynamic'
 
 export const components = {
-  gallery: dynamic(() => import('./Gallery')),
+  gallery: dynamic(() => import('./Album')),
 }

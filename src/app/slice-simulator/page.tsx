@@ -2,9 +2,9 @@ import { SliceZone } from '@prismicio/react'
 import { SliceSimulator, getSlices } from '@slicemachine/adapter-next/simulator'
 import { redirect } from 'next/navigation'
 
-import { components } from '@/slices'
-
 import type { SliceSimulatorParams } from '@slicemachine/adapter-next/simulator'
+
+import { components } from '@/slices'
 
 export default function SliceSimulatorPage({
   searchParams,

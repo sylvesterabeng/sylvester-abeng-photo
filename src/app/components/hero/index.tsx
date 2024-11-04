@@ -44,18 +44,16 @@ const Hero: React.FC<Props> = ({ pickups }) => {
   return (
     <Flex className={container}>
       <Flex className={slide} key={index}>
-        {data.thumbnails?.map((items) => (
-          <Fragment key={items.thumbnail.id}>
-            {data.thumbnails.length > 1 ? (
+        {data.photos?.map((items) => (
+          <Fragment key={items.photo.id}>
+            {data.photos.length > 1 ? (
               <Box
-                onClick={setNextPickup}
-                backgroundImage={`url('${items.thumbnail.url}')`}
+                backgroundImage={`url('${items.photo.url}')`}
                 className={dualSlide}
               />
             ) : (
               <Box
-                onClick={setNextPickup}
-                backgroundImage={`url('${items.thumbnail.url}')`}
+                backgroundImage={`url('${items.photo.url}')`}
                 className={singleSlide}
               />
             )}

@@ -4,12 +4,60 @@ import type * as prismic from '@prismicio/client'
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 
+/**
+ * Item in *albums → photos*
+ */
+export interface AlbumsDocumentDataPhotosItem {
+  /**
+   * photo field in *albums → photos*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albums.photos[].photo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  photo: prismic.ImageField<never>
+}
+
 type AlbumsDocumentDataSlicesSlice = GallerySlice
 
 /**
  * Content for albums documents
  */
 interface AlbumsDocumentData {
+  /**
+   * title field in *albums*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albums.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField
+
+  /**
+   * thumbnail field in *albums*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albums.thumbnail
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  thumbnail: prismic.ImageField<never>
+
+  /**
+   * photos field in *albums*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albums.photos[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  photos: prismic.GroupField<Simplify<AlbumsDocumentDataPhotosItem>>
+
   /**
    * Slice Zone field in *albums*
    *
@@ -68,102 +116,75 @@ export type AlbumsDocument<Lang extends string = string> =
 export type AllDocumentTypes = AlbumsDocument
 
 /**
- * Item in *Gallery → Default → Primary → thumbnails*
+ * Item in *Album → Default → Primary → photos*
  */
-export interface GallerySliceDefaultPrimaryThumbnailsItem {
+export interface GallerySlicePickupPrimaryPhotosItem {
   /**
-   * thumbnail field in *Gallery → Default → Primary → thumbnails*
+   * photo field in *Album → Default → Primary → photos*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.default.primary.thumbnails[].thumbnail
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  thumbnail: prismic.ImageField<never>
-}
-
-/**
- * Item in *Gallery → Default → Primary → photos*
- */
-export interface GallerySliceDefaultPrimaryPhotosItem {
-  /**
-   * photo field in *Gallery → Default → Primary → photos*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.default.primary.photos[].photo
+   * - **API ID Path**: gallery.pickup.primary.photos[].photo
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   photo: prismic.ImageField<never>
 }
 
 /**
- * Primary content in *Gallery → Default → Primary*
+ * Primary content in *Album → Default → Primary*
  */
-export interface GallerySliceDefaultPrimary {
+export interface GallerySlicePickupPrimary {
   /**
-   * thumbnails field in *Gallery → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.default.primary.thumbnails[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  thumbnails: prismic.GroupField<
-    Simplify<GallerySliceDefaultPrimaryThumbnailsItem>
-  >
-
-  /**
-   * photos field in *Gallery → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.default.primary.photos[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  photos: prismic.GroupField<Simplify<GallerySliceDefaultPrimaryPhotosItem>>
-
-  /**
-   * title field in *Gallery → Default → Primary*
+   * title field in *Album → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: gallery.default.primary.title
+   * - **API ID Path**: gallery.pickup.primary.title
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField
 
   /**
-   * number field in *Gallery → Default → Primary*
+   * photos field in *Album → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.pickup.primary.photos[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  photos: prismic.GroupField<Simplify<GallerySlicePickupPrimaryPhotosItem>>
+
+  /**
+   * number field in *Album → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: #00
-   * - **API ID Path**: gallery.default.primary.number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.pickup.primary.number
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   number: prismic.KeyTextField
 }
 
 /**
- * Default variation for Gallery Slice
+ * Default variation for Album Slice
  *
- * - **API ID**: `default`
+ * - **API ID**: `pickup`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type GallerySliceDefault = prismic.SharedSliceVariation<
-  'default',
-  Simplify<GallerySliceDefaultPrimary>,
+export type GallerySlicePickup = prismic.SharedSliceVariation<
+  'pickup',
+  Simplify<GallerySlicePickupPrimary>,
   never
 >
 
 /**
- * Slice variation for *Gallery*
+ * Slice variation for *Album*
  */
-type GallerySliceVariation = GallerySliceDefault
+type GallerySliceVariation = GallerySlicePickup
 
 /**
- * Gallery Shared Slice
+ * Album Shared Slice
  *
  * - **API ID**: `gallery`
  * - **Description**: Gallery
@@ -194,14 +215,14 @@ declare module '@prismicio/client' {
     export type {
       AlbumsDocument,
       AlbumsDocumentData,
+      AlbumsDocumentDataPhotosItem,
       AlbumsDocumentDataSlicesSlice,
       AllDocumentTypes,
       GallerySlice,
-      GallerySliceDefaultPrimaryThumbnailsItem,
-      GallerySliceDefaultPrimaryPhotosItem,
-      GallerySliceDefaultPrimary,
+      GallerySlicePickupPrimaryPhotosItem,
+      GallerySlicePickupPrimary,
       GallerySliceVariation,
-      GallerySliceDefault,
+      GallerySlicePickup,
     }
   }
 }

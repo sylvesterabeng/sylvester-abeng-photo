@@ -1,4 +1,5 @@
 import { HStack, VStack, css } from '@kuma-ui/core'
+import Link from 'next/link'
 
 const container = css`
   top: 0;
@@ -10,6 +11,13 @@ const container = css`
   height: t('sizes.header');
   z-index: 1;
   background-color: t('colors.neutral.100');
+  user-select: none;
+
+  a {
+    color: t('colors.neutral.500');
+    text-decoration: none;
+    outline: none;
+  }
 
   @media (max-width: t('breakpoints.lg')) {
     padding: 0 24px;
@@ -31,6 +39,12 @@ const subtitle = css`
   font-weight: 900;
   font-size: t('fontSizes.sm');
 
+  span {
+    background-color: t('colors.neutral.400');
+    color: t('colors.neutral.100');
+    padding: 1px 2px;
+  }
+
   @media (max-width: t('breakpoints.lg')) {
     font-size: t('fontSizes.xs');
   }
@@ -40,9 +54,8 @@ const nav = css`
   font-size: t('fontSizes.md');
   gap: 24px;
 
-  a {
-    text-decoration: none;
-    outline: none;
+  a:hover {
+    color: t('colors.neutral.300');
   }
 
   @media (max-width: t('breakpoints.lg')) {
@@ -53,13 +66,17 @@ const nav = css`
 const Header: React.FC = () => {
   return (
     <HStack justify="space-between" className={container}>
-      <VStack>
-        <span className={title}>Sylvester Abeng</span>
-        <span className={subtitle}>「好き」と「楽しい」を集める</span>
+      <VStack gap={2}>
+        <Link href="/">
+          <div className={title}>Sylvester Abeng</div>
+          <div className={subtitle}>
+            <span>好き</span>と<span>楽しい</span>を集める
+          </div>
+        </Link>
       </VStack>
       <HStack className={nav}>
-        <a>About</a>
-        <a>Album</a>
+        <Link href="/about">About</Link>
+        <Link href="/albums">Albums</Link>
       </HStack>
     </HStack>
   )
