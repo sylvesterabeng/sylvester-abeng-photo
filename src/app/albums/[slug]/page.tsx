@@ -52,4 +52,13 @@ const Album: React.FC<Props> = async ({ params }) => {
   )
 }
 
+export const generateStaticParams = async () => {
+  const client = createClient()
+  const documents = await client.getAllByType('albums')
+
+  return documents.map((doc) => ({
+    slug: doc.uid,
+  }))
+}
+
 export default Album
