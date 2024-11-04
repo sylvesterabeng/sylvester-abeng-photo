@@ -43,7 +43,7 @@ const Album: React.FC<Props> = async ({ params }) => {
               field={photo}
               key={photo.url}
               alt=""
-              imgixParams={{ auto: false }}
+              imgixParams={{ auto: [] }}
             />
           )
         })}

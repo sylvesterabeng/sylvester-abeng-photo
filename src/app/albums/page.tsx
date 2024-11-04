@@ -18,7 +18,7 @@ const Albums: React.FC = async () => {
               <PrismicNextImage
                 field={data.thumbnail}
                 alt=""
-                imgixParams={{ auto: false }}
+                imgixParams={{ auto: [] }}
               />
             </div>
             <div className={title}>{data.title}</div>
