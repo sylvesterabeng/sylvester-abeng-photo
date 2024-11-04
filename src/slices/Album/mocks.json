@@ -48,6 +48,11 @@
 				"__TYPE__": "FieldContent",
 				"value": "cost",
 				"type": "Text"
+			},
+			"slug": {
+				"__TYPE__": "FieldContent",
+				"value": "popular",
+				"type": "Text"
 			}
 		},
 		"items": [

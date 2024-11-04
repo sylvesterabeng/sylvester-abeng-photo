@@ -12,6 +12,13 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "slug": {
+          "type": "Text",
+          "config": {
+            "label": "slug",
+            "placeholder": ""
+          }
+        },
         "title": {
           "type": "Text",
           "config": {

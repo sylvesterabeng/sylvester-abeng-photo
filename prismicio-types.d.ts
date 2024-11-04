@@ -135,6 +135,16 @@ export interface GallerySlicePickupPrimaryPhotosItem {
  */
 export interface GallerySlicePickupPrimary {
   /**
+   * slug field in *Album → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.pickup.primary.slug
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  slug: prismic.KeyTextField
+
+  /**
    * title field in *Album → Default → Primary*
    *
    * - **Field Type**: Text

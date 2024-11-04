@@ -1,5 +1,6 @@
 'use client'
 import { Box, Flex, VStack } from '@kuma-ui/core'
+import Link from 'next/link'
 import { Fragment, useCallback, useEffect, useState } from 'react'
 
 import {
@@ -43,23 +44,25 @@ const Hero: React.FC<Props> = ({ pickups }) => {
 
   return (
     <Flex className={container}>
-      <Flex className={slide} key={index}>
-        {data.photos?.map((items) => (
-          <Fragment key={items.photo.id}>
-            {data.photos.length > 1 ? (
-              <Box
-                backgroundImage={`url('${items.photo.url}')`}
-                className={dualSlide}
-              />
-            ) : (
-              <Box
-                backgroundImage={`url('${items.photo.url}')`}
-                className={singleSlide}
-              />
-            )}
-          </Fragment>
-        ))}
-      </Flex>
+      <Link href={`/albums/${data.slug}`}>
+        <Flex className={slide} key={index}>
+          {data.photos?.map((items) => (
+            <Fragment key={items.photo.id}>
+              {data.photos.length > 1 ? (
+                <Box
+                  backgroundImage={`url('${items.photo.url}')`}
+                  className={dualSlide}
+                />
+              ) : (
+                <Box
+                  backgroundImage={`url('${items.photo.url}')`}
+                  className={singleSlide}
+                />
+              )}
+            </Fragment>
+          ))}
+        </Flex>
+      </Link>
       <VStack className={textWrapper}>
         <VStack className={name}>
           <span>Sylvester Abeng</span>

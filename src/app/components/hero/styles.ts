@@ -11,6 +11,10 @@ export const container = css`
   padding-top: 0;
   gap: 80px;
 
+  a {
+    display: contents;
+  }
+
   @media (max-width: t('breakpoints.lg')) {
     gap: 0;
     flex-direction: column;
