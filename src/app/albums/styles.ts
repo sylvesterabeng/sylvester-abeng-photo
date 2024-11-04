@@ -27,6 +27,10 @@ export const container = css`
     color: t('colors.neutral.500');
     text-decoration: none;
     outline: none;
+
+    @media (max-width: t('breakpoints.lg')) {
+      width: 100%;
+    }
   }
 `
 
