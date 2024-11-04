@@ -23,7 +23,7 @@ const Albums: React.FC = async () => {
         <VStack key={d.id} className={album} alignItems="center">
           <p>{d.primary.title}</p>
           <Box width="100%">
-            <PrismicNextImage field={d.primary.thumbnails[0]?.thumbnail} />
+            <PrismicNextImage field={d.primary.photos[0]?.photo} />
           </Box>
         </VStack>
       ))}
