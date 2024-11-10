@@ -11,7 +11,8 @@ import { repositoryName } from '@/prismicio'
 import 'sanitize.css'
 
 export const metadata: Metadata = {
-  title: 'Sylvester Abeng',
+  title: 'Sylvester Abeng Photo',
+  description: '好きと楽しいを集める',
 }
 
 export default function RootLayout({
