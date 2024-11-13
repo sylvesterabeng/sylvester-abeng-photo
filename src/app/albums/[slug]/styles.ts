@@ -53,7 +53,7 @@ export const photos = css`
   --photo-gap: 24px;
 
   user-select: none;
-  max-width: 1000px;
+  max-width: 1200px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

@@ -7,7 +7,9 @@ import { createClient } from '@/prismicio'
 
 const Albums: React.FC = async () => {
   const client = createClient()
-  const res = await client.getAllByTag('album')
+  const res = await client.getAllByTag('album', {
+    orderings: 'document.first_publication_date desc',
+  })
 
   return (
     <div className={container}>
