@@ -39,10 +39,14 @@ const subtitle = css`
   font-weight: 900;
   font-size: t('fontSizes.sm');
 
-  span {
-    background-color: t('colors.neutral.400');
-    color: t('colors.neutral.100');
-    padding: 1px 2px;
+  mark {
+    background-color: t('colors.neutral.200');
+    color: t('colors.neutral.500');
+    padding: 0 2px;
+    margin: 0 2px;
+    &:first-child {
+      margin-left: 0;
+    }
   }
 
   @media (max-width: t('breakpoints.lg')) {
@@ -70,7 +74,7 @@ const Header: React.FC = () => {
         <Link href="/">
           <div className={title}>Sylvester Abeng</div>
           <div className={subtitle}>
-            <span>好き</span>と<span>楽しい</span>を集める
+            <mark>好き</mark>と<mark>楽しい</mark>を集める
           </div>
         </Link>
       </VStack>

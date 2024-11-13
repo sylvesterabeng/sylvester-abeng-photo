@@ -40,9 +40,27 @@ export const album = css`
   max-width: 1200px;
   gap: 40px;
 
-  &:hover {
-    img {
-      transform: scale(110%);
+  mark {
+    background: linear-gradient(
+      to right,
+      t('colors.neutral.200') 0%,
+      t('colors.neutral.200') 0%
+    );
+    color: t('colors.neutral.500');
+    display: inline;
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      img {
+        transform: scale(110%);
+      }
+      mark {
+        background-size: 100% 100%;
+      }
     }
   }
 
@@ -55,7 +73,7 @@ export const album = css`
 
 export const imageWrapper = css`
   display: flex;
-  border-radius: t('radii.sm');
+  border-radius: t('radii.md');
   aspect-ratio: 16/9;
   overflow: hidden;
   max-width: 650px;
@@ -69,6 +87,7 @@ export const imageWrapper = css`
 export const title = css`
   font-size: min(70px, 4vw);
   line-height: 120%;
+  height: 100%;
   text-transform: uppercase;
   flex: 3;
 

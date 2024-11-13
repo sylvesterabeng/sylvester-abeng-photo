@@ -1,22 +1,25 @@
 import { css } from '@kuma-ui/core'
 
 export const container = css`
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 64px;
   padding-top: 20vh;
   gap: 64px;
-
   transform: translateY(0px);
-  transition:
-    opacity 1.5s ease,
-    transform 1.5s ease;
-
-  @starting-style {
-    opacity: 0;
-    transform: translateY(50px);
-  }
+  animation: fadeInUp 1s ease-in-out forwards;
 
   @media (max-width: t('breakpoints.lg')) {
     padding: 24px;
@@ -60,6 +63,10 @@ export const photos = css`
     border-radius: t('radii.sm');
     height: auto;
     object-fit: contain;
+  }
+
+  @media (max-width: t('breakpoints.lg')) {
+    --photo-gap: 16px;
   }
 `
 

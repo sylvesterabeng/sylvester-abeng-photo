@@ -21,7 +21,9 @@ const Albums: React.FC = async () => {
                 imgixParams={{ auto: [] }}
               />
             </div>
-            <div className={title}>{data.title}</div>
+            <div className={title}>
+              <mark>{data.title}</mark>
+            </div>
           </div>
         </Link>
       ))}

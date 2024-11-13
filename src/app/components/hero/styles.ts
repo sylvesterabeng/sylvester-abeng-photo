@@ -149,10 +149,11 @@ export const meta = css`
   }
 
   line-height: 130%;
-  font-size: t('fontSizes.md');
+  font-size: t('fontSizes.lg');
+  font-size: min(2.5vw, t('fontSizes.lg'));
   animation: metaSlide 7s ease forwards;
 
   @media (max-width: t('breakpoints.lg')) {
-    font-size: max(2vw, t('fontSizes.rg'));
+    font-size: max(2vw, t('fontSizes.md'));
   }
 `
