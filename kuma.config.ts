@@ -33,8 +33,8 @@ const theme = createTheme({
     md: '16px',
   },
   sizes: {
-    header: '120px',
-    headerMobile: '100px',
+    header: '100px',
+    headerMobile: '80px',
   },
 })
 

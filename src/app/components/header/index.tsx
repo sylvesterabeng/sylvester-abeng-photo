@@ -40,8 +40,8 @@ const subtitle = css`
   font-size: t('fontSizes.sm');
 
   mark {
-    background-color: t('colors.neutral.200');
-    color: t('colors.neutral.500');
+    background-color: t('colors.neutral.400');
+    color: t('colors.neutral.100');
     padding: 0 2px;
     margin: 0 2px;
     &:first-child {
