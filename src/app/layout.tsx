@@ -10,9 +10,36 @@ import { repositoryName } from '@/prismicio'
 
 import 'sanitize.css'
 
+const title = 'Sylvester Abeng Photo'
+const description = '「好き」と「楽しい」を集める'
+
 export const metadata: Metadata = {
-  title: 'Sylvester Abeng Photo',
-  description: '好きと楽しいを集める',
+  applicationName: title,
+  title: title,
+  description: description,
+  keywords: 'sylvester abeng',
+  openGraph: {
+    type: 'website',
+    url: 'https://sylvester-abeng-photo.vercel.app',
+    title: title,
+    description: description,
+    siteName: title,
+    images: [
+      {
+        url: 'https://sylvester-abeng-photo.vercel.app/ogp.png',
+      },
+    ],
+  },
+  twitter: {
+    site: 'https://sylvester-abeng-photo.vercel.app',
+    title: title,
+    description: description,
+    images: [
+      {
+        url: 'https://sylvester-abeng-photo.vercel.app/ogp.png',
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
