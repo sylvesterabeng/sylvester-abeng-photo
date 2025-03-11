@@ -1,5 +1,6 @@
 import { KumaRegistry } from '@kuma-ui/next-plugin/registry'
 import { PrismicPreview } from '@prismicio/next'
+import { Analytics } from '@vercel/analytics/react'
 
 import { Header } from './components'
 import { bellefair, zenOldMincho, container } from './styles'
@@ -58,6 +59,7 @@ export default function RootLayout({
           {children}
         </KumaRegistry>
         <PrismicPreview repositoryName={repositoryName} />
+        <Analytics />
       </body>
     </html>
   )
