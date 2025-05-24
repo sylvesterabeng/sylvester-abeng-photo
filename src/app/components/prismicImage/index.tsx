@@ -18,8 +18,6 @@ const PrismicImage: React.FC<PrismicImageProps> = ({
     cs: 'origin',
   },
 }) => {
-  const dimension = field?.dimensions
-
   return (
     <PrismicNextImage
       className={className}
