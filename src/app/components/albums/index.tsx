@@ -1,7 +1,7 @@
 import { Box, css, VStack } from '@kuma-ui/core'
-import { PrismicNextImage } from '@prismicio/next'
 
 import { createClient } from '@/prismicio'
+import { PrismicImage } from '@/app/components'
 
 const Albums: React.FC = async () => {
   const client = createClient()
@@ -23,7 +23,7 @@ const Albums: React.FC = async () => {
         <VStack key={d.id} className={album} alignItems="center">
           <p>{d.primary.title}</p>
           <Box width="100%">
-            <PrismicNextImage field={d.primary.photos[0]?.photo} />
+            <PrismicImage field={d.primary.photos[0]?.photo} />
           </Box>
         </VStack>
       ))}

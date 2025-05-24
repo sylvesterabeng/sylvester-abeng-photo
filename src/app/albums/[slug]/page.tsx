@@ -1,4 +1,3 @@
-import { PrismicNextImage } from '@prismicio/next'
 import { notFound } from 'next/navigation'
 
 import {
@@ -10,6 +9,7 @@ import {
 } from './styles'
 
 import { createClient } from '@/prismicio'
+import { PrismicImage } from '@/app/components'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -38,12 +38,10 @@ const Album: React.FC<Props> = async ({ params }) => {
           const isVertical = dimension.height > dimension.width
 
           return (
-            <PrismicNextImage
+            <PrismicImage
               className={isVertical ? verticalPhoto : horizontalPhoto}
               field={photo}
               key={photo.url}
-              alt=""
-              imgixParams={{ auto: [] }}
             />
           )
         })}
@@ -54,7 +52,14 @@ const Album: React.FC<Props> = async ({ params }) => {
 
 export const generateStaticParams = async () => {
   const client = createClient()
-  const documents = await client.getAllByType('albums')
+  const documents = await client.getAllByType('albums', {
+    orderings: [
+      {
+        field: 'document.first_publication_date',
+        direction: 'desc',
+      },
+    ],
+  })
 
   return documents.map((doc) => ({
     slug: doc.uid,

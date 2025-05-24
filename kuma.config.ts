@@ -12,6 +12,7 @@ const theme = createTheme({
       400: '#343840',
       300: '#5F6673',
       200: '#b7bec4',
+      150: '#d1d3d5',
       100: '#e8e7e3',
     },
     brand: '#B80F0A',
