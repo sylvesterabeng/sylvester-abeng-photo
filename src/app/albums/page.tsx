@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { album, imageWrapper, container, title } from './styles'
+import { album, image, container, title } from './styles'
 
 import { createClient } from '@/prismicio'
 import { PrismicImage } from '../components'
@@ -21,9 +21,7 @@ const Albums: React.FC = async () => {
       {res.map(({ uid, data }) => (
         <Link href={`/albums/${uid}`} key={uid}>
           <div className={album}>
-            <div className={imageWrapper}>
-              <PrismicImage field={data.thumbnail} />
-            </div>
+            <PrismicImage className={image} field={data.thumbnail} />
             <div className={title}>
               <mark>{data.title}</mark>
             </div>

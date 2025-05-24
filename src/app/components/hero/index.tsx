@@ -11,6 +11,7 @@ import {
   textWrapper,
   name,
   meta,
+  imageWrapper,
 } from './styles'
 
 import type { GallerySlice } from '../../../../prismicio-types'
@@ -37,7 +38,7 @@ const Hero: React.FC<Props> = ({ pickups }) => {
     }
     const intervalId = setInterval(() => {
       setTimer(timer + 1)
-    }, 1000)
+    }, 5000)
 
     return () => clearInterval(intervalId)
   }, [index, pickups, setNextPickup, timer])
@@ -49,15 +50,19 @@ const Hero: React.FC<Props> = ({ pickups }) => {
           {data.photos?.map((items) => (
             <Fragment key={items.photo.id}>
               {data.photos.length > 1 ? (
-                <Box
-                  backgroundImage={`url('${items.photo.url}')`}
-                  className={dualSlide}
-                />
+                <div className={imageWrapper}>
+                  <Box
+                    backgroundImage={`url('${items.photo.url}')`}
+                    className={dualSlide}
+                  />
+                </div>
               ) : (
-                <Box
-                  backgroundImage={`url('${items.photo.url}')`}
-                  className={singleSlide}
-                />
+                <div className={imageWrapper}>
+                  <Box
+                    backgroundImage={`url('${items.photo.url}')`}
+                    className={singleSlide}
+                  />
+                </div>
               )}
             </Fragment>
           ))}

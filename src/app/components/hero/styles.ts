@@ -70,7 +70,6 @@ export const slide = css`
     height: 100%;
     user-select: none;
     background-size: cover;
-    background-color: t('colors.neutral.200');
     animation: thumbnail var(--slide-base-animation);
 
     &:only-child {
@@ -156,4 +155,8 @@ export const meta = css`
   @media (max-width: t('breakpoints.lg')) {
     font-size: max(2vw, t('fontSizes.md'));
   }
+`
+
+export const imageWrapper = css`
+  background-color: t('colors.neutral.150');
 `

@@ -71,14 +71,13 @@ export const album = css`
   }
 `
 
-export const imageWrapper = css`
+export const image = css`
   display: flex;
   border-radius: t('radii.md');
   aspect-ratio: 16/9;
   overflow: hidden;
   max-width: 650px;
   flex: 4;
-  background-color: t('colors.neutral.150');
 
   @media (max-width: t('breakpoints.lg')) {
     max-width: unset;

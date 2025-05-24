@@ -7,12 +7,7 @@ const App: React.FC = async () => {
   const res = await client.getByUID('albums', 'pickups')
   const pickups = res.data.slices
 
-  return (
-    <>
-      <Hero pickups={pickups} />
-      {/* <Albums /> */}
-    </>
-  )
+  return <Hero pickups={pickups} />
 }
 
 export default App
