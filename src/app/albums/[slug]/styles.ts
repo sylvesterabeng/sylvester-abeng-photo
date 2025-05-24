@@ -34,19 +34,6 @@ export const title = css`
   text-align: center;
   text-transform: uppercase;
   font-size: 6vw;
-  /* 
-  @keyframes text-scroll {
-    from {
-      transform: translateY(0%);
-    }
-    to {
-      transform: translateY(-80px);
-    }
-  }
-
-  animation: text-scroll auto ease forwards;
-  animation-timeline: scroll();
-  animation-range: 0 50vh; */
 `
 
 export const photos = css`

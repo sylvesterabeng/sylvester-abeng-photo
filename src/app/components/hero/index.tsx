@@ -38,7 +38,7 @@ const Hero: React.FC<Props> = ({ pickups }) => {
     }
     const intervalId = setInterval(() => {
       setTimer(timer + 1)
-    }, 5000)
+    }, 1000)
 
     return () => clearInterval(intervalId)
   }, [index, pickups, setNextPickup, timer])
