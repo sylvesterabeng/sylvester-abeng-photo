@@ -18,26 +18,48 @@ export const metadata: Metadata = {
   applicationName: title,
   title: title,
   description: description,
-  keywords: 'sylvester abeng',
+  keywords: [
+    'Sylvester Abeng',
+    'photography',
+    'portfolio',
+    'japan photographer',
+    '写真家',
+  ],
+  authors: [{ name: 'Sylvester Abeng' }],
+  creator: 'Sylvester Abeng',
+  publisher: 'Sylvester Abeng',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      'max-image-preview': 'large',
+    },
+  },
+  alternates: {
+    canonical: 'https://sylvester-abeng-photo.vercel.app',
+  },
   openGraph: {
     type: 'website',
     url: 'https://sylvester-abeng-photo.vercel.app',
     title: title,
     description: description,
     siteName: title,
+    locale: 'ja_JP',
     images: [
       {
         url: 'https://sylvester-abeng-photo.vercel.app/ogp.png',
+        alt: 'Sylvester Abeng Photo Portfolio',
       },
     ],
   },
   twitter: {
-    site: 'https://sylvester-abeng-photo.vercel.app',
+    card: 'summary_large_image',
     title: title,
     description: description,
     images: [
       {
         url: 'https://sylvester-abeng-photo.vercel.app/ogp.png',
+        alt: 'Sylvester Abeng Photo Portfolio',
       },
     ],
   },
